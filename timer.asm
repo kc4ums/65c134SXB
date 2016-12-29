@@ -1,0 +1,2 @@
+nop
+delay lda speed

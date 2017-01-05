@@ -79,7 +79,7 @@ end	nop
 	
 	;;  lookup table for characters to morse
 	.or	$2900
-	.db	"KKKK]"
+	.db	"KC4UMS/B EM81HM]"	;"]" is the termintation charcater for string 
 	.or 	$3000
 	.db	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	.or	$3050

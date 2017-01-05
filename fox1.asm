@@ -46,6 +46,7 @@ keydit	lda	#$01
 	ldx 	#$ff
 	stx	$001d		;unkey rig
 	jmp 	compare		;dit is done
+	
 ;;; key dit 
 keydah	lda	#$01
 	sta	$2100
@@ -60,7 +61,6 @@ keydah	lda	#$01
 	stx	$001d		;unkey rig
 	jmp 	compare		;dah is done
 
-
 ;;; delay sub routine
 delay 	lda 	speed
 d2  	ldx 	#$fa
@@ -73,7 +73,7 @@ d1  	dex
 	bne 	delay
 	rts
 
-	
+;;; end of routine	
 end	nop
 
 	

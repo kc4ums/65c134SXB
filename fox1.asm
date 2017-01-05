@@ -7,7 +7,7 @@ speed	=	$2100
 	lda 	#$ff
 	sta	$001d		;port 5 bit one set
 	lda	#$00
-	sta	$2101		;letter pointer KC4UMS
+	sta	$2101		;location of beacon string
 	;; main routine start
 newchar	ldy	$2101		;pointer to first letter
 	ldx	#$00		;start of lookup table

@@ -4,15 +4,19 @@
 char	=	$2100
 morse	=	$2101
 speed	=	$2102
+next	=	$2103		;pointer to next beacon character
+beacon	=	$2900
 	
 	lda	#$01
 	sta	$001f		;port 5 bit 1 is output
 	lda 	#$ff
 	sta	$001d		;port 5 bit one set
-	
-	
+	lda	#$00
+	sta	next		;pointer to next beacon character
+
 main	nop
-	jsr 	lookup		;lookup next character to transmit
+	jsr	get		;next beacon character
+	jsr 	lookup		;lookup next morse character to transmit in table
 shift	lda 	morse		;morse character register
 	lsr			;shift right one bit
 	sta	morse		;save the new morse character
@@ -21,11 +25,26 @@ shift	lda 	morse		;morse character register
 dah	jmp	keydit		;dit routine
 dit	jmp	keydah		;dah routine
 compare	lda	morse		;is this the last dit or dah that has been shift 
-	cmp 	#$01
-	beq	end		;this character is done return
-	bne	shift
-	
+	cmp 	#$01		;is this the last bit
+	bne	shift		;if no continue shifting out dit or dah
+	lda	#$02		;delay for space between morse characters
+	sta	speed		;delay for space between morse characters
+	jsr	delay		;delay for space between morse characters
+	beq	main		;get the next  character
+	jmp	end		;you SHOULD NOT end here
 
+
+	;; get the next beacon character
+get	ldx	next
+	lda	beacon,X
+	cmp	#$5d
+	beq	end
+	sta	char
+	inx
+	stx	next
+	rts
+	
+	
 	;; lookup character in morse table
 lookup	ldx	#$00		;start of lookup table
 	lda 	char		;letter to look-up
@@ -84,7 +103,7 @@ end	nop
 	
 	;;  lookup table for characters to morse
 	.or	$2900
-	.db	"K]"	;"]" is the termintation charcater for string 
+	.db	"KC4UMS123456789KC4UMS]"	;"]" is the termintation charcater for string 
 	.or 	$3000
 	.db	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ]"
 	.or	$3050

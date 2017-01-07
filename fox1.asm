@@ -103,11 +103,11 @@ end	nop
 	
 	;;  lookup table for characters to morse
 	.or	$2900
-	.db	"KC4UMS123456789KC4UMS]"	;"]" is the termintation charcater for string 
+	.db	"TTTEEE]"	;"]" is the termintation charcater for string 
 	.or 	$3000
 	.db	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ]"
 	.or	$3050
-	.hs	3f.3e.3c.38.30.20.21.23.27.2f.06.11.15.09.03.1b.0b.10.04.1e.0d.12.07.05.08.16.1B.0A.08.03.0c.18.0e.19.1d.13.5d
+	.hs	3f.3e.3c.38.30.20.21.23.27.2f.06.11.15.09.02.1b.0b.10.04.1e.0d.12.07.05.08.16.1B.0A.08.03.0c.18.0e.19.1d.13.5d
 	.or	$3100
 
 	

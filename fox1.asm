@@ -2,10 +2,10 @@
 	.tf	foxhunt.srec,S28
 	.or	$2000
 char	=	$2100
-morse	=	$2101
-speed	=	$2102
+morse	=	$2101		;holds the morse word that is shifted right one bit at a time
+speed	=	$2102		;delay time for delay subroutine	
 next	=	$2103		;pointer to next beacon character
-beacon	=	$2900
+beacon	=	$2900		;beacon string
 	
 	lda	#$01
 	sta	$001f		;port 5 bit 1 is output
